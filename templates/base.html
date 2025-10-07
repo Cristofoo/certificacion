@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tutoriza</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">Tutoriza</div>
+        <div class="header-right">
+          {% if session.get('user_id') %}
+            <span class="welcome">Bienvenido {{ session.get('user_name') }}</span>
+            <a class="link small" href="/asesoria/nueva">Solicitar Asesoría</a>
+            <a class="link small" href="/logout">Cerrar Sesión</a>
+          {% else %}
+            <a class="link" href="/register">Registro / Iniciar Sesión</a>
+          {% endif %}
+        </div>
+      </div>
+    </header>
+    <main class="container">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <ul class="flashes">
+            {% for category, msg in messages %}
+              <li class="flash {{ category }}">{{ msg }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="dashboard-header">
+    <h1>Bienvenido, {{ session.get('user_name') }}</h1>
+    <div class="actions">
+      <a class="btn" href="/asesoria/nueva">Solicitar Asesoría</a>
+    </div>
+  </div>
+
+  <div class="asesorias-list">
+    {% for a in asesorias %}
+      <article class="asesoria-card">
+        <h3 class="tema">{{ a.tema }}</h3>
+        <div class="meta">Solicitado por: <strong>{{ a.solicitante }}</strong> — Fecha: {{ a.fecha }} — Duración: {{ a.duracion }} horas</div>
+        <p class="notas">{{ a.notas }}</p>
+        <div class="card-actions">
+          <a class="link" href="/asesoria/ver/{{ a.id }}">Ver</a>
+          {% if session.get('user_id') == a.usuario_id %}
+            <a class="btn small" href="/asesoria/editar/{{ a.id }}">Editar</a>
+            <a class="btn small danger" href="/asesoria/borrar/{{ a.id }}" onclick="return confirm('¿Borrar asesoría?');">Borrar</a>
+          {% endif %}
+        </div>
+      </article>
+    {% else %}
+      <p>No hay asesorías.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

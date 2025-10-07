@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Editar Asesoría</h1>
+  <form method="post" action="{{ url_for('asesorias.editar_asesoria', id=asesoria.get('id', asesoria.id if asesoria is mapping else '') ) }}">
+    <label>Tema</label>
+    <input type="text" name="tema" value="{{ asesoria.tema }}" required>
+    <label>Fecha</label>
+  <input type="date" name="fecha" value="{{ asesoria.fecha }}" min="{{ today }}" required>
+    <label>Duración (horas)</label>
+    <input type="number" name="duracion" min="1" max="8" value="{{ asesoria.duracion }}" required>
+    <label>Notas</label>
+    <textarea name="notas" maxlength="50">{{ asesoria.notas }}</textarea>
+    <label>Tutor</label>
+    {% if usuarios and usuarios|length > 0 %}
+    <select name="tutor_id">
+      <option value="">-- Seleccione un tutor --</option>
+      {% for u in usuarios %}
+        <option value="{{ u.id }}" {% if u.id == asesoria.tutor_id %}selected{% endif %}>{{ u.nombre or '' }} {{ u.apellido or '' }}</option>
+      {% endfor %}
+    </select>
+    {% else %}
+      <p class="muted">No hay tutores disponibles.</p>
+    {% endif %}
+  <button type="submit">Guardar</button>
+  <a class="button" href="/">Volver</a>
+  </form>
+{% endblock %}

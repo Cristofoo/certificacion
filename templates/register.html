@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="auth-grid">
+    <section class="card">
+      <h2>Registro</h2>
+      <form class="form" method="post" action="/register">
+        <label>Nombre</label>
+        <input type="text" name="nombre" required>
+        <label>Apellido</label>
+        <input type="text" name="apellido" required>
+        <label>Email</label>
+        <input type="email" name="email" required>
+        <label>Contraseña</label>
+        <input type="password" name="password" required>
+        <label>Confirmar Contraseña</label>
+        <input type="password" name="confirm" required>
+        <button type="submit" class="btn-primary">Registrar</button>
+      </form>
+    </section>
+    <aside class="card note">
+      <h3>Validaciones</h3>
+      <ul>
+        <li>Nombre y apellido: mínimo 2 caracteres</li>
+        <li>Email en formato válido y único</li>
+        <li>Contraseña y confirmación iguales</li>
+      </ul>
+    </aside>
+  </div>
+{% endblock %}

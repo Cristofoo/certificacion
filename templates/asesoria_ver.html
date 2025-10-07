@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>{{ asesoria.tema }}</h1>
+  <p>Solicitado por: {{ solicitante }}</p>
+  <p>Fecha: {{ asesoria.fecha }}</p>
+  <p>Duración: {{ asesoria.duracion }} horas</p>
+  <p>Notas: {{ asesoria.notas }}</p>
+
+  <p><strong>Tutor Actual:</strong> {{ tutor_actual.nombre }} {{ tutor_actual.apellido }}</p>
+  {% if session.get('user_id') == asesoria.usuario_id %}
+  <form method="post" action="{{ url_for('asesorias.cambiar_tutor', id=asesoria.get('id', asesoria.id if asesoria is mapping else '') ) }}">
+    {% set tutors = usuarios|selectattr('id','ne', asesoria.usuario_id)|list %}
+    {% if tutors and tutors|length > 0 %}
+    <select name="tutor_id">
+      <option value="">-- Seleccione un tutor --</option>
+      {% for u in tutors %}
+          <option value="{{ u.id }}" {% if u.id == asesoria.tutor_id %}selected{% endif %}>{{ u.nombre or '' }} {{ u.apellido or '' }}</option>
+      {% endfor %}
+    </select>
+    {% else %}
+      <p class="muted">No hay tutores disponibles para cambiar (solo existe el solicitante).</p>
+    {% endif %}
+    <button type="submit">Cambiar Tutor</button>
+  </form>
+  {% endif %}
+  <a class="button" href="/">Volver</a>
+{% endblock %}

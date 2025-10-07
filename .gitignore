@@ -1,0 +1,24 @@
+# Entornos virtuales comunes
+venv/
+.env/
+env/
+.venv/
+env-todo
+
+
+# Archivos de python
+__pycache__/
+*.pyc      
+*.pyo
+*.pyd
+
+# Archivos comunes de data bases
+*.sqlite3
+*.db    
+
+
+#Archivos de sistema y editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

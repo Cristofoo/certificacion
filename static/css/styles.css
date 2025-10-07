@@ -1,0 +1,48 @@
+:root{
+	--brand:#0b79d0;
+	--muted:#666;
+	--danger:#d9534f;
+}
+*{box-sizing:border-box}
+body{font-family:Inter, system-ui, Arial, sans-serif; margin:0; background:#f6f8fa; color:#222}
+.container{max-width:980px; margin:0 auto; padding:16px}
+.site-header{background:#fff; border-bottom:1px solid #e6e9ee}
+.header-inner{display:flex; align-items:center; justify-content:space-between}
+.brand{font-weight:700; color:var(--brand); font-size:20px}
+.header-right{display:flex; gap:12px; align-items:center}
+.link{color:var(--brand); text-decoration:none}
+.link.small{font-size:14px}
+
+.flashes{list-style:none; padding:0; margin:12px 0}
+.flash{padding:10px 12px; border-radius:6px; margin-bottom:8px}
+.flash.error{background:#fff0f0; color:#8a1f1f}
+.flash.success{background:#f0fff0; color:#1a6f1a}
+
+.auth-grid{display:grid; grid-template-columns:1fr 320px; gap:16px; align-items:start; margin-top:24px}
+.card{background:#fff; padding:18px; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,0.06)}
+.card.note{background:#fff9e6}
+.form{display:flex; flex-direction:column; gap:8px}
+label{font-weight:600}
+input, textarea, select{padding:10px; border:1px solid #e0e3e8; border-radius:6px}
+.form select{min-width:180px}
+.form select option{color:#222}
+.form select:invalid{color:#888}
+.btn, button.btn-primary{background:var(--brand); color:#fff; padding:8px 12px; border-radius:6px; border:none; cursor:pointer}
+.btn.small{padding:6px 8px; font-size:13px}
+.btn.danger{background:var(--danger)}
+.muted{color:var(--muted); font-size:13px}
+
+.dashboard-header{display:flex; justify-content:space-between; align-items:center; margin:20px 0}
+.asesorias-list{display:grid; gap:12px}
+.asesoria-card{background:#fff; padding:14px; border-radius:8px; box-shadow:0 1px 2px rgba(0,0,0,0.04)}
+.asesoria-card .tema{margin:0 0 6px}
+.asesoria-card .meta{color:var(--muted); font-size:13px}
+.asesoria-card .notas{margin:8px 0 12px}
+.card-actions{display:flex; gap:8px; align-items:center}
+.card-actions .link{color:var(--brand)}
+
+@media(max-width:800px){
+	.auth-grid{grid-template-columns:1fr}
+}
+
+
